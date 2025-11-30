@@ -17,8 +17,7 @@ export default function Calendario() {
   const [fecha, setFecha] = useState("");
   const [descripcion, setDescripcion] = useState("");
 
-  const agregarEvento = (e) => {
-    e.preventDefault();
+  const agregarEvento = () => {
 
     if (!titulo.trim() || !fecha.trim()) {
       alert("Todos los campos son obligatorios");
