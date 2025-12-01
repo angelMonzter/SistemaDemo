@@ -1,7 +1,9 @@
 import { Sidebar } from "../components/Sidebar";
 import { Navbar } from "../components/Navbar";
+import { useState } from "react";
 
 export default function Prospectos() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const prospectos = [
     { id: 1, nombre: "Juan Pérez", correo: "juan@mail.com", telefono: "555-123" },
@@ -12,14 +14,36 @@ export default function Prospectos() {
   return (
     <div className="flex h-screen bg-gray-100">
 
-      {/* SIDEBAR */}
-      <Sidebar/>
+      {/* SIDEBAR (oculta en móvil, visible en PC) */}
+      <div className="hidden md:block">
+        <Sidebar />
+      </div>
+
+      {/* SIDEBAR MÓVIL */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
+          onClick={() => setSidebarOpen(false)}></div>
+      )}
+
+      <div className={`fixed top-0 left-0 h-full w-64 bg-gray-900 text-white z-50 transform transition-transform duration-300 md:hidden
+           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <Sidebar />
+      </div>
+
 
       {/* MAIN */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col md:ml-64">
 
         {/* NAVBAR */}
-        <Navbar/>
+        <div className="md:hidden p-2 bg-white shadow">
+          <button onClick={() => setSidebarOpen(true)}>
+            <svg width="28" height="28" fill="gray">
+              <path d="M4 7h20M4 14h20M4 21h20" stroke="gray" strokeWidth="2" />
+            </svg>
+          </button>
+        </div>
+
+        <Navbar />
 
         {/* CONTENT */}
         <main className="p-6 overflow-auto">

@@ -1,9 +1,8 @@
 export function Sidebar() {
-
   return (
+    <>
+      <aside className="w-64 h-screen fixed left-0 top-0 bg-gray-900 text-white flex flex-col shadow-xl overflow-y-auto">
 
-     <>
-      <aside className="w-64 bg-gray-900 text-white flex flex-col shadow-xl">
         <div className="p-6 text-2xl font-bold border-b border-gray-700">
           Demo
         </div>
@@ -19,8 +18,8 @@ export function Sidebar() {
             Calendario
           </a>
         </nav>
+
       </aside>
-     </>
-     
+    </>
   );
 }
